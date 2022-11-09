@@ -12,7 +12,7 @@ To use, build with:
 cargo build --release --target riscv32imac-unknown-xous-elf
 ```
 
-To fix the build, set `debug = false` in `Cargo.toml`.
+To fix the build, set `debug = false` and/or remove `codegen-units = 1` in `Cargo.toml`.
 
 ## Graphical Abstraction Manager (GAM)
 
