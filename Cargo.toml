@@ -1,0 +1,63 @@
+[package]
+authors = ["bunnie <bunnie@kosagi.com>"]
+description = "Graphical Abstraction Manager for Xous"
+edition = "2018"
+name = "gam"
+version = "0.1.0"
+
+[profile.release]
+codegen-units = 1 # 1 better optimizations
+debug = true
+strip = false
+lto = "fat"
+incremental = true
+#panic = "abort" # Remove panic output, which can reduce file size
+#opt-level = 1  # z,s: Optimize for size instead of performance; 1 for easier debugging
+
+# Dependency versions enforced by Cargo.lock.
+[dependencies]
+com = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"} # used by the backlight setting on the main menu thread
+content-plugin-api = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+graphics-server = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+ime-plugin-api = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+ime-plugin-shell = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+keyboard = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+log = "0.4.14"
+log-server = {package = "xous-api-log", version = "0.1.18"}
+ticktimer-server = {package = "xous-api-ticktimer", version = "0.9.17"}
+trng = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+xous = "0.9.24"
+xous-ipc = "0.9.24"
+xous-names = {package = "xous-api-names", version = "0.9.19"}
+
+num-derive = {version = "0.3.3", default-features = false}
+num-traits = {version = "0.2.14", default-features = false}
+rkyv = {version = "0.4.3", default-features = false, features = ["const_generics"]}
+
+susres = {package = "xous-api-susres", version = "0.9.17"} # used for the sleep now menu item
+
+enum_dispatch = "0.3.7" # used for trait-based dispatch off of multiple layout objects.
+locales = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+
+tts-frontend = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+
+qrcode = { version = "0.12", default-features = false }
+miniz_oxide = "0.4.4"
+# pix = "0.13"
+
+# used in bip39 dialogue
+hex = { version = "0.4.3", default-features = false, features = ["alloc"] }
+sha2 = {git = "https://github.com/betrusted-io/xous-core.git", rev = "1bc39cd513a503d2a7a0c609fe0e2194f01b117b"}
+digest = "0.9.0"
+
+utralib = {version = "0.1.9", optional = true, default-features = false }
+
+[features]
+precursor = ["utralib/precursor"]
+hosted = ["utralib/hosted"]
+renode = ["utralib/renode"]
+debugprint = []
+tts = []
+# default = ["debugprint"] # "debugprint"
+default = []
+ditherpunk = []
