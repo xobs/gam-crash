@@ -1,6 +1,22 @@
-# Graphical Abstraction Manager (GAM)
+# Crashing rust-lld
 
-The GAM provides abstract UI primitives to other modules.
+This is an example of crashing rust-lld. To use this, you will need
+to have `riscv32imac-unknown-xous-elf` support. You can either add it from
+the `nightly` branch, or get a prebuilt toolchain. Nightly is part of:
+
+<https://github.com/rust-lang/rust/pull/104101>
+
+To use, build with:
+
+```
+cargo build --release --target riscv32imac-unknown-xous-elf
+```
+
+To fix the build, set `debug = false` in `Cargo.toml`.
+
+## Graphical Abstraction Manager (GAM)
+
+The GAM provides abstract UI primitives to other modules in Xous.
 
 The goal is to have this module work in close conjunction with the
 `graphics-server`, and all other modules would route abstract UI
